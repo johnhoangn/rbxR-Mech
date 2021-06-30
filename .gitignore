@@ -1,0 +1,5 @@
+.vscode/settings.json
+**/init.meta.json
+default.project.json
+Todo.server.lua
+**/Plugins
