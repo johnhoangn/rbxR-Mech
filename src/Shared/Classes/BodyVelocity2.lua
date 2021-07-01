@@ -1,8 +1,9 @@
 -- BodyVelocity2, BodyVelocity's successor
 -- Created since Constraint-based linear velocity is still not here
+-- NOTE: This only works in frictionless systems
 
 -- Dynamese (Enduo)
--- 7.1.2021
+-- 7.2.2021
 
 
 local ZERO_VECTOR = Vector3.new()
@@ -69,7 +70,7 @@ function BodyVelocity2.__newindex(self, index, value)
         TryStart()
 
     elseif (index == "Velocity") then
-        self._Parent.AssemblyLinearVelocity = value
+        --self._Parent.AssemblyLinearVelocity = value
         rawset(self, "_Velocity", value)
         TryStart()
 
@@ -90,9 +91,8 @@ function BodyVelocity2:Step()
     local targetForce =
         (Vector3.new(0, workspace.Gravity, 0)
         + (self._Velocity - part.Velocity)) * part:GetMass()
-    print(self._Velocity, self._MaxForce)
 
-    self.Instance.Force = targetForce Vector3.new(
+    self.Instance.Force = Vector3.new(
         math.clamp(targetForce.X, -self._MaxForce.X, self._MaxForce.X),
         math.clamp(targetForce.Y, -self._MaxForce.Y, self._MaxForce.Y),
         math.clamp(targetForce.Z, -self._MaxForce.Z, self._MaxForce.Z)
