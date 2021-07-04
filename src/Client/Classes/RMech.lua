@@ -1,14 +1,31 @@
-local Template = {}
-Template.__index = Template
+local RMech = {}
+RMech.__index = RMech
 
 
-function Template.new(...)
+-- Creates a new RMech, a mech wrapper
+-- @param realMech <model>
+function RMech.new(realMech)
+    local mass = 0
+
+    for _, c in ipairs(realMech:GetDescendants()) do
+        if (c:IsA("BasePart") and not c.Massless) then
+            mass += c:GetMass()
+        end
+    end
+
 	local self = setmetatable({
-		
-	}, Template)
-	
+		Mech = realMech;
+        Mass = mass;
+        COM = realMech.Capsule.COM;
+	}, RMech)
+
 	return self
 end
 
 
-return Template
+function RMech:GetAttribute(attr)
+    return self.Mech:GetAttribute(attr)
+end
+
+
+return RMech
