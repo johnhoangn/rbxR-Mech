@@ -28,6 +28,12 @@ local mt = {
 }
 
 
+ClientFolder:WaitForChild("Enums")
+ClientFolder:WaitForChild("Services")
+ClientFolder:WaitForChild("Modules")
+ClientFolder:WaitForChild("Plugins")
+
+
 -- Includes the provided module into the Deep Engine
 -- @param module to link metatable to Engine
 function Engine:Link(module)
