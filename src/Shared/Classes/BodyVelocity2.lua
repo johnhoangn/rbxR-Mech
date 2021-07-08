@@ -1,6 +1,12 @@
--- BodyVelocity2, BodyVelocity's successor
+-- BodyVelocity2, BodyVelocity's successor (at least I hoped it to be)
 -- Created since Constraint-based linear velocity is still not here
--- NOTE: This only works in frictionless systems
+-- !! NOTE: This only works in frictionless systems !!
+-- !! NOTE: This requires the entire attached assembly's mass to be EXACTLY the part's mass !!
+
+-- Managed to 99.99% match normal BodyVelocity
+--  (the catch is you have to set the part's velocity on the first frame)
+
+-- Usage: Treat it like a normal BodyVelocity, parent it, change maxforce, change velocity, etc.
 
 -- Dynamese (Enduo)
 -- 7.2.2021
@@ -107,6 +113,7 @@ function BodyVelocity2:Destroy()
     Managed.Num -= 1
     Managed.List[self] = nil
 
+    -- Let's not use runservice when there are no BVs out there
     if (Stepper ~= nil and Managed.Num == 0) then
         Stepper:Disconnect()
         Stepper = nil
