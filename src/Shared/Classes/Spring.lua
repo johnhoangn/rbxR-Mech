@@ -18,6 +18,7 @@ function Spring.new(freq, x)
 		x = x, -- Current position
 		v = 0, -- Current velocity
 		goal = x, -- Goal position
+        delta = 0
 	}, Spring)
 end
 
@@ -49,6 +50,8 @@ function Spring:Step(dt)
 
 	self.x = x1
 	self.v = v1
+
+    self.delta = self.goal - self.x
 
 	return x1
 end

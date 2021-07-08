@@ -22,12 +22,18 @@ function ConstrainedSpring.new(freq, x, minValue, maxValue)
 		minValue = minValue, -- Minimum bound
 		maxValue = maxValue, -- Maximum bound
 		goal = x, -- Goal position
+        delta = 0
 	}, ConstrainedSpring)
 end
 
 
 function ConstrainedSpring:SetGoal(newGoal)
 	self.goal = clamp(newGoal, self.minValue, self.maxValue)
+end
+
+
+function ConstrainedSpring:SetValue(x)
+    self.x = clamp(x, self.minValue, self.maxValue)
 end
 
 
@@ -64,6 +70,8 @@ function ConstrainedSpring:Step(dt)
 
 	self.x = x1
 	self.v = v1
+
+    self.delta = self.goal - x
 
 	return x1
 end
