@@ -70,8 +70,9 @@ end
 -- @param actuator <BasePart>
 -- @param actuated <BasePart>
 -- @param speed <float> [0, INF)
+-- @param name <string> == "Servo"
 -- @returns <Servo>, <Model>
-function Servo.new2(actuator, actuated, speed)
+function Servo.new2(actuator, actuated, speed, name)
     local servo = Instance.new("Model")
     local a = actuator:Clone()
     local b = actuated:Clone()
@@ -91,7 +92,7 @@ function Servo.new2(actuator, actuated, speed)
     -- Name & parent
     a.Name = "Actuator"
     b.Name = "Actuated"
-    servo.Name = "Servo"
+    servo.Name = name or "Servo"
 
     a.Parent = servo
     b.Parent = servo
