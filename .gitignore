@@ -3,4 +3,8 @@
 default.project.json
 Todo.server.lua
 **/MechService.lua
+**/BattleController.lua
+**/RMechServer.lua
+**/MainServer.server.lua
+**/MainClient.client.lua
 **/Plugins
